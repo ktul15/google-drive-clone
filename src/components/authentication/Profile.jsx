@@ -1,16 +1,13 @@
 import React, { useState } from "react"
 import { Card, Button, Alert } from "react-bootstrap"
-import { useAuth } from "../contexts/AuthContext"
-import { Link, useNavigate, Navigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { useAuth } from "../../contexts/AuthContext"
+import CenteredContainer from "./CenteredContainer"
 
 export default function Dashboard() {
   const [error, setError] = useState("")
   const { currentUser, logout } = useAuth()
   const navigate = useNavigate()
-
-  if(!currentUser){
-    return <Navigate to='/login' />
-  }
 
   async function handleLogout() {
     setError("")
@@ -24,7 +21,7 @@ export default function Dashboard() {
   }
 
   return (
-    <>
+    <CenteredContainer>
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Profile</h2>
@@ -40,6 +37,6 @@ export default function Dashboard() {
           Log Out
         </Button>
       </div>
-    </>
+    </CenteredContainer>
   )
 }
